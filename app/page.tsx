@@ -419,63 +419,871 @@
 // //     </div>
 // //   );
 // // }
+// "use client";
+
+// import { motion } from "framer-motion";
+// import Link from "next/link";
+// import { products } from "@/data/products";
+// import HeroVideoBg from "@/components/HeroVideoBg";
+
+// export default function Home() {
+//   return (
+//     <div className="flex flex-col w-full overflow-hidden">
+//       {/* Hero Section */}
+//       <section className="relative h-[90vh] flex items-center justify-center bg-primary overflow-hidden">
+//         {/* Video Background */}
+//         <HeroVideoBg />
+
+//         {/* Hero Content */}
+//         <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
+//           <motion.h1
+//             initial={{ opacity: 0, y: 30 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8 }}
+//             className="text-5xl md:text-7xl font-serif font-bold text-accent mb-6 tracking-tight drop-shadow-lg"
+//           >
+//             The Chocolate Cake Factory
+//           </motion.h1>
+
+//           <motion.p
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8, delay: 0.2 }}
+//             className="text-xl md:text-3xl text-textLight font-light mb-10 drop-shadow-md"
+//           >
+//             The Best in the City
+//           </motion.p>
+
+//           <motion.div
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8, delay: 0.4 }}
+//             className="flex flex-col sm:flex-row items-center justify-center gap-4"
+//           >
+//             <Link
+//               href="/cakes"
+//               className="bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white transition duration-300 w-full sm:w-auto text-center"
+//             >
+//               View Cakes
+//             </Link>
+
+//             <a
+//               href="https://wa.me/919941186416"
+//               target="_blank"
+//               rel="noreferrer"
+//               className="bg-transparent border-2 border-accent text-accent px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent hover:text-primary transition duration-300 w-full sm:w-auto text-center"
+//             >
+//               Order on WhatsApp
+//             </a>
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* Featured Cakes Section */}
+//       <section className="py-20 bg-background px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-7xl mx-auto">
+//           <div className="text-center mb-16">
+//             <h2 className="text-4xl font-serif text-primary mb-4">
+//               Our Signature Masterpieces
+//             </h2>
+//             <div className="w-24 h-1 bg-accent mx-auto" />
+//           </div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+//             {products.slice(0, 3).map((product, idx) => (
+//               <motion.div
+//                 key={product.id}
+//                 initial={{ opacity: 0, y: 30 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.5, delay: idx * 0.1 }}
+//                 whileHover={{ y: -10 }}
+//                 className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group"
+//               >
+//                 <div className="h-72 overflow-hidden relative">
+//                   <img
+//                     src={product.image}
+//                     alt={product.name}
+//                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+//                   />
+//                   <div className="absolute top-4 right-4 bg-accent text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+//                     {product.tags[0]}
+//                   </div>
+//                 </div>
+
+//                 <div className="p-6">
+//                   <p className="text-sm text-primary/60 mb-2 uppercase tracking-wider font-semibold">
+//                     {product.category}
+//                   </p>
+//                   <h3 className="font-serif text-2xl text-primary mb-2 line-clamp-1">
+//                     {product.name}
+//                   </h3>
+
+//                   <div className="flex justify-between items-center mt-4">
+//                     <span className="text-xl font-bold text-primary">
+//                       ₹{product.price}
+//                     </span>
+//                     <a
+//                       href={`https://wa.me/919941186416?text=${encodeURIComponent(
+//                         "Hi, I want to order " + product.name
+//                       )}`}
+//                       target="_blank"
+//                       rel="noreferrer"
+//                       className="text-accent underline font-semibold hover:text-primary transition-colors"
+//                     >
+//                       Order Now
+//                     </a>
+//                   </div>
+//                 </div>
+//               </motion.div>
+//             ))}
+//           </div>
+
+//           <div className="text-center mt-12">
+//             <Link
+//               href="/cakes"
+//               className="inline-block border-b-2 border-primary text-primary font-bold hover:text-accent hover:border-accent pb-1 transition-colors"
+//             >
+//               Explore All Cakes &rarr;
+//             </Link>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Why Choose Us */}
+//       <section className="py-20 bg-primary text-textLight px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+//           <motion.div
+//             initial={{ opacity: 0, x: -50 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8 }}
+//           >
+//             <h2 className="text-4xl font-serif text-accent mb-6">
+//               The Art of Fine Baking
+//             </h2>
+//             <p className="text-lg text-secondary/80 leading-relaxed mb-6">
+//               At The Chocolate Cake Factory, every creation is a labor of love.
+//               We source only the finest cocoa and premium ingredients to craft
+//               desserts that look spectacular and taste divine.
+//             </p>
+
+//             <ul className="space-y-4">
+//               {[
+//                 "Premium Imported Chocolate",
+//                 "100% Eggless Options Available",
+//                 "Same Day Delivery in Chennai",
+//                 "Custom Designer Cakes",
+//               ].map((item) => (
+//                 <li key={item} className="flex items-center gap-3">
+//                   <div className="w-2 h-2 rounded-full bg-accent" />
+//                   <span className="text-lg">{item}</span>
+//                 </li>
+//               ))}
+//             </ul>
+//           </motion.div>
+
+//           <motion.div
+//             initial={{ opacity: 0, x: 50 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8 }}
+//             className="grid grid-cols-2 gap-4"
+//           >
+//             <img
+//               src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?q=80&w=600&auto=format&fit=crop"
+//               className="rounded-xl shadow-lg mt-8"
+//               alt="Cake detail 1"
+//             />
+//             <img
+//               src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?q=80&w=600&auto=format&fit=crop"
+//               className="rounded-xl shadow-lg"
+//               alt="Cake detail 2"
+//             />
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* Branch Highlights */}
+//       <section className="py-20 bg-background px-4">
+//         <div className="max-w-5xl mx-auto text-center">
+//           <h2 className="text-4xl font-serif text-primary mb-12">
+//             Visit Our Locations
+//           </h2>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//             <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
+//               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
+//               <h3 className="text-2xl font-serif text-primary mb-2">
+//                 Ambattur Branch
+//               </h3>
+//               <p className="text-gray-600 mb-6 font-medium">Banu Nagar, Chennai</p>
+//               <div className="space-y-3">
+//                 <a
+//                   href="tel:09941186416"
+//                   className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
+//                 >
+//                   Call Us: 09941186416
+//                 </a>
+//                 <Link
+//                   href="/locations"
+//                   className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
+//                 >
+//                   Get Directions
+//                 </Link>
+//               </div>
+//             </div>
+
+//             <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
+//               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
+//               <h3 className="text-2xl font-serif text-primary mb-2">
+//                 Kallikuppam Branch
+//               </h3>
+//               <p className="text-gray-600 mb-6 font-medium">
+//                 Redhills Main Rd, Chennai
+//               </p>
+//               <div className="space-y-3">
+//                 <a
+//                   href="tel:09941186416"
+//                   className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
+//                 >
+//                   Call Us: 09941186416
+//                 </a>
+//                 <Link
+//                   href="/locations"
+//                   className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
+//                 >
+//                   Get Directions
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// }
+
+// "use client";
+
+// import { motion } from "framer-motion";
+// import Link from "next/link";
+// import { products } from "@/data/products";
+// import HeroVideoBg from "@/components/HeroVideoBg";
+
+// export default function Home() {
+//   return (
+//     <div className="flex flex-col w-full overflow-x-hidden">
+//       {/* Hero Section */}
+//       <section className="relative min-h-[100svh] bg-primary overflow-hidden">
+//         <HeroVideoBg />
+
+//         {/* Hero Content */}
+//         <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+//           {/* mobile-safe padding + always centered */}
+//           <div className="min-h-[100svh] flex flex-col items-center justify-center text-center pt-24 pb-24 sm:pt-28 sm:pb-28">
+//             <motion.h1
+//               initial={{ opacity: 0, y: 30 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.8 }}
+//               className="font-serif font-bold text-accent tracking-tight drop-shadow-lg
+//                          text-4xl sm:text-5xl md:text-7xl"
+//             >
+//               The Chocolate <br className="sm:hidden" />
+//               Cake Factory
+//             </motion.h1>
+
+//             <motion.p
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.8, delay: 0.2 }}
+//               className="mt-3 text-textLight font-light drop-shadow-md
+//                          text-base sm:text-lg md:text-3xl"
+//             >
+//               The Best in the City
+//             </motion.p>
+
+//             <motion.div
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.8, delay: 0.4 }}
+//               className="mt-8 w-full max-w-md flex flex-col gap-4"
+//             >
+//               <Link
+//                 href="/cakes"
+//                 className="bg-accent text-primary py-3 sm:py-4 rounded-full font-semibold
+//                            text-base sm:text-lg hover:bg-white transition duration-300 text-center"
+//               >
+//                 View Cakes
+//               </Link>
+
+//               <a
+//                 href="https://wa.me/919941186416"
+//                 target="_blank"
+//                 rel="noreferrer"
+//                 className="bg-transparent border-2 border-accent text-accent py-3 sm:py-4 rounded-full font-semibold
+//                            text-base sm:text-lg hover:bg-accent hover:text-primary transition duration-300 text-center"
+//               >
+//                 Order on WhatsApp
+//               </a>
+//             </motion.div>
+//           </div>
+//         </div>
+
+//         {/* Bottom brand line - never cut on mobile */}
+//         <div className="absolute bottom-0 left-0 right-0 text-center pt-3 pb-[max(14px,env(safe-area-inset-bottom))]">
+//           <p className="text-white/40 text-xs sm:text-sm">
+//             The Chocolate Cake Factory • THE BEST IN THE CITY
+//           </p>
+//         </div>
+//       </section>
+
+//       {/* Featured Cakes Section */}
+//       <section className="py-20 bg-background px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-7xl mx-auto">
+//           <div className="text-center mb-16">
+//             <h2 className="text-4xl font-serif text-primary mb-4">
+//               Our Signature Masterpieces
+//             </h2>
+//             <div className="w-24 h-1 bg-accent mx-auto" />
+//           </div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+//             {products.slice(0, 3).map((product, idx) => (
+//               <motion.div
+//                 key={product.id}
+//                 initial={{ opacity: 0, y: 30 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.5, delay: idx * 0.1 }}
+//                 whileHover={{ y: -10 }}
+//                 className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group"
+//               >
+//                 <div className="h-72 overflow-hidden relative">
+//                   <img
+//                     src={product.image}
+//                     alt={product.name}
+//                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+//                   />
+//                   <div className="absolute top-4 right-4 bg-accent text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+//                     {product.tags[0]}
+//                   </div>
+//                 </div>
+
+//                 <div className="p-6">
+//                   <p className="text-sm text-primary/60 mb-2 uppercase tracking-wider font-semibold">
+//                     {product.category}
+//                   </p>
+//                   <h3 className="font-serif text-2xl text-primary mb-2 line-clamp-1">
+//                     {product.name}
+//                   </h3>
+
+//                   <div className="flex justify-between items-center mt-4">
+//                     <span className="text-xl font-bold text-primary">
+//                       ₹{product.price}
+//                     </span>
+//                     <a
+//                       href={`https://wa.me/919941186416?text=${encodeURIComponent(
+//                         "Hi, I want to order " + product.name
+//                       )}`}
+//                       target="_blank"
+//                       rel="noreferrer"
+//                       className="text-accent underline font-semibold hover:text-primary transition-colors"
+//                     >
+//                       Order Now
+//                     </a>
+//                   </div>
+//                 </div>
+//               </motion.div>
+//             ))}
+//           </div>
+
+//           <div className="text-center mt-12">
+//             <Link
+//               href="/cakes"
+//               className="inline-block border-b-2 border-primary text-primary font-bold hover:text-accent hover:border-accent pb-1 transition-colors"
+//             >
+//               Explore All Cakes &rarr;
+//             </Link>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Why Choose Us */}
+//       <section className="py-20 bg-primary text-textLight px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+//           <motion.div
+//             initial={{ opacity: 0, x: -50 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8 }}
+//           >
+//             <h2 className="text-4xl font-serif text-accent mb-6">
+//               The Art of Fine Baking
+//             </h2>
+//             <p className="text-lg text-secondary/80 leading-relaxed mb-6">
+//               At The Chocolate Cake Factory, every creation is a labor of love.
+//               We source only the finest cocoa and premium ingredients to craft
+//               desserts that look spectacular and taste divine.
+//             </p>
+
+//             <ul className="space-y-4">
+//               {[
+//                 "Premium Imported Chocolate",
+//                 "100% Eggless Options Available",
+//                 "Same Day Delivery in Chennai",
+//                 "Custom Designer Cakes",
+//               ].map((item) => (
+//                 <li key={item} className="flex items-center gap-3">
+//                   <div className="w-2 h-2 rounded-full bg-accent" />
+//                   <span className="text-lg">{item}</span>
+//                 </li>
+//               ))}
+//             </ul>
+//           </motion.div>
+
+//           <motion.div
+//             initial={{ opacity: 0, x: 50 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8 }}
+//             className="grid grid-cols-2 gap-4"
+//           >
+//             <img
+//               src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?q=80&w=600&auto=format&fit=crop"
+//               className="rounded-xl shadow-lg mt-8"
+//               alt="Cake detail 1"
+//             />
+//             <img
+//               src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?q=80&w=600&auto=format&fit=crop"
+//               className="rounded-xl shadow-lg"
+//               alt="Cake detail 2"
+//             />
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* Branch Highlights */}
+//       <section className="py-20 bg-background px-4">
+//         <div className="max-w-5xl mx-auto text-center">
+//           <h2 className="text-4xl font-serif text-primary mb-12">
+//             Visit Our Locations
+//           </h2>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//             <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
+//               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
+//               <h3 className="text-2xl font-serif text-primary mb-2">
+//                 Ambattur Branch
+//               </h3>
+//               <p className="text-gray-600 mb-6 font-medium">
+//                 Banu Nagar, Chennai
+//               </p>
+//               <div className="space-y-3">
+//                 <a
+//                   href="tel:09941186416"
+//                   className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
+//                 >
+//                   Call Us: 09941186416
+//                 </a>
+//                 <Link
+//                   href="/locations"
+//                   className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
+//                 >
+//                   Get Directions
+//                 </Link>
+//               </div>
+//             </div>
+
+//             <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
+//               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
+//               <h3 className="text-2xl font-serif text-primary mb-2">
+//                 Kallikuppam Branch
+//               </h3>
+//               <p className="text-gray-600 mb-6 font-medium">
+//                 Redhills Main Rd, Chennai
+//               </p>
+//               <div className="space-y-3">
+//                 <a
+//                   href="tel:09941186416"
+//                   className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
+//                 >
+//                   Call Us: 09941186416
+//                 </a>
+//                 <Link
+//                   href="/locations"
+//                   className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
+//                 >
+//                   Get Directions
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// }
+// "use client";
+
+// import { motion } from "framer-motion";
+// import Link from "next/link";
+// import { products } from "@/data/products";
+// import HeroVideoBg from "@/components/HeroVideoBg";
+// import { WHATSAPP_NUMBER } from "@/data/config";
+// export default function Home() {
+//   return (
+//     <div className="flex flex-col w-full overflow-x-hidden">
+//       {/* Hero Section */}
+//       <section className="relative min-h-[100svh] bg-primary overflow-hidden isolate">
+//         {/* Video Background */}
+//         <HeroVideoBg />
+
+//         {/* Hero Content */}
+//         <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+//           {/* mobile-safe padding + always centered */}
+//           <div className="min-h-[100svh] flex flex-col items-center justify-center text-center pt-24 pb-24 sm:pt-28 sm:pb-28">
+//             <motion.h1
+//               initial={{ opacity: 0, y: 30 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.8 }}
+//               className="font-serif font-bold text-accent tracking-tight drop-shadow-lg
+//                          text-4xl sm:text-5xl md:text-7xl"
+//             >
+//               The Chocolate <br className="sm:hidden" />
+//               Cake Factory
+//             </motion.h1>
+
+//             <motion.p
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.8, delay: 0.2 }}
+//               className="mt-3 text-textLight font-light drop-shadow-md
+//                          text-base sm:text-lg md:text-3xl"
+//             >
+//               The Best in the City
+//             </motion.p>
+
+//             <motion.div
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.8, delay: 0.4 }}
+//               className="mt-8 w-full max-w-md flex flex-col gap-4"
+//             >
+//               <Link
+//                 href="/cakes"
+//                 className="bg-accent text-primary py-3 sm:py-4 rounded-full font-semibold
+//                            text-base sm:text-lg hover:bg-white transition duration-300 text-center"
+//               >
+//                 View Cakes
+//               </Link>
+
+//               <a
+//                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
+//                 target="_blank"
+//                 rel="noreferrer"
+//                 className="bg-transparent border-2 border-accent text-accent py-3 sm:py-4 rounded-full font-semibold
+//                            text-base sm:text-lg hover:bg-accent hover:text-primary transition duration-300 text-center"
+//               >
+//                 Order on WhatsApp
+//               </a>
+//             </motion.div>
+//           </div>
+//         </div>
+
+//         {/* Bottom brand line - never cut on mobile */}
+//         <div className="absolute bottom-0 left-0 right-0 text-center pt-3 pb-[max(14px,env(safe-area-inset-bottom))] z-10">
+//           <p className="text-white/40 text-xs sm:text-sm">
+//             The Chocolate Cake Factory • THE BEST IN THE CITY
+//           </p>
+//         </div>
+//       </section>
+
+//       {/* Featured Cakes Section */}
+//       <section className="py-20 bg-background px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-7xl mx-auto">
+//           <div className="text-center mb-16">
+//             <h2 className="text-4xl font-serif text-primary mb-4">
+//               Our Signature Masterpieces
+//             </h2>
+//             <div className="w-24 h-1 bg-accent mx-auto" />
+//           </div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+//             {products.slice(0, 3).map((product, idx) => (
+//               <motion.div
+//                 key={product.id}
+//                 initial={{ opacity: 0, y: 30 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.5, delay: idx * 0.1 }}
+//                 whileHover={{ y: -10 }}
+//                 className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group"
+//               >
+//                 <div className="h-72 overflow-hidden relative">
+//                   <img
+//                     src={product.image}
+//                     alt={product.name}
+//                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+//                   />
+//                   <div className="absolute top-4 right-4 bg-accent text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+//                     {product.tags[0]}
+//                   </div>
+//                 </div>
+
+//                 <div className="p-6">
+//                   <p className="text-sm text-primary/60 mb-2 uppercase tracking-wider font-semibold">
+//                     {product.category}
+//                   </p>
+//                   <h3 className="font-serif text-2xl text-primary mb-2 line-clamp-1">
+//                     {product.name}
+//                   </h3>
+
+//                   <div className="flex justify-between items-center mt-4">
+//                     <span className="text-xl font-bold text-primary">
+//                       ₹{product.price}
+//                     </span>
+//                     <a
+//                         href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+//                           "Hi, I want to order " + product.name
+//                         )}`}
+//                       target="_blank"
+//                       rel="noreferrer"
+//                       className="text-accent underline font-semibold hover:text-primary transition-colors"
+//                     >
+//                       Order Now
+//                     </a>
+//                   </div>
+//                 </div>
+//               </motion.div>
+//             ))}
+//           </div>
+
+//           <div className="text-center mt-12">
+//             <Link
+//               href="/cakes"
+//               className="inline-block border-b-2 border-primary text-primary font-bold hover:text-accent hover:border-accent pb-1 transition-colors"
+//             >
+//               Explore All Cakes &rarr;
+//             </Link>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Why Choose Us */}
+//       <section className="py-20 bg-primary text-textLight px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+//           <motion.div
+//             initial={{ opacity: 0, x: -50 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8 }}
+//           >
+//             <h2 className="text-4xl font-serif text-accent mb-6">
+//               The Art of Fine Baking
+//             </h2>
+//             <p className="text-lg text-secondary/80 leading-relaxed mb-6">
+//               At The Chocolate Cake Factory, every creation is a labor of love.
+//               We source only the finest cocoa and premium ingredients to craft
+//               desserts that look spectacular and taste divine.
+//             </p>
+
+//             <ul className="space-y-4">
+//               {[
+//                 "Premium Imported Chocolate",
+//                 "100% Eggless Options Available",
+//                 "Same Day Delivery in Chennai",
+//                 "Custom Designer Cakes",
+//               ].map((item) => (
+//                 <li key={item} className="flex items-center gap-3">
+//                   <div className="w-2 h-2 rounded-full bg-accent" />
+//                   <span className="text-lg">{item}</span>
+//                 </li>
+//               ))}
+//             </ul>
+//           </motion.div>
+
+//           <motion.div
+//             initial={{ opacity: 0, x: 50 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.8 }}
+//             className="grid grid-cols-2 gap-4"
+//           >
+//             <img
+//               src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?q=80&w=600&auto=format&fit=crop"
+//               className="rounded-xl shadow-lg mt-8"
+//               alt="Cake detail 1"
+//             />
+//             <img
+//               src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?q=80&w=600&auto=format&fit=crop"
+//               className="rounded-xl shadow-lg"
+//               alt="Cake detail 2"
+//             />
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* Branch Highlights */}
+//       <section className="py-20 bg-background px-4">
+//         <div className="max-w-5xl mx-auto text-center">
+//           <h2 className="text-4xl font-serif text-primary mb-12">
+//             Visit Our Locations
+//           </h2>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//             <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
+//               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
+//               <h3 className="text-2xl font-serif text-primary mb-2">
+//                 Ambattur Branch
+//               </h3>
+//               <p className="text-gray-600 mb-6 font-medium">
+//                 Banu Nagar, Chennai
+//               </p>
+//               <div className="space-y-3">
+//                 <a
+//                   href="tel:09941186416"
+//                   className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
+//                 >
+//                   Call Us: 09941186416
+//                 </a>
+//                 <Link
+//                   href="/locations"
+//                   className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
+//                 >
+//                   Get Directions
+//                 </Link>
+//               </div>
+//             </div>
+
+//             <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
+//               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
+//               <h3 className="text-2xl font-serif text-primary mb-2">
+//                 Kallikuppam Branch
+//               </h3>
+//               <p className="text-gray-600 mb-6 font-medium">
+//                 Redhills Main Rd, Chennai
+//               </p>
+//               <div className="space-y-3">
+//                 <a
+//                   href="tel:09941186416"
+//                   className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
+//                 >
+//                   Call Us: 09941186416
+//                 </a>
+//                 <Link
+//                   href="/locations"
+//                   className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
+//                 >
+//                   Get Directions
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// }
 "use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { products } from "@/data/products";
 import HeroVideoBg from "@/components/HeroVideoBg";
+import { WHATSAPP_NUMBER } from "@/data/config";
+
+function buildHeroWhatsAppLink() {
+  const msg = [
+    "Hi The Chocolate Cake Factory,",
+    "I’d like to place an order ✅",
+    "",
+    "Please share today’s cake options and delivery details.",
+    "Thank you!",
+  ].join("\n");
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+function buildProductWhatsAppLink(productName: string, price: number | string) {
+  const msg = [
+    "Hi The Chocolate Cake Factory,",
+    "I’d like to place an order ✅",
+    "",
+    `🍰 Cake: ${productName}`,
+    `💰 Price: ₹${price}`,
+    "",
+    "Please confirm availability and share delivery/pickup options.",
+    "Thank you!",
+  ].join("\n");
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full overflow-hidden">
+    <div className="flex flex-col w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center bg-primary overflow-hidden">
+      <section className="relative min-h-[100svh] bg-primary overflow-hidden isolate">
         {/* Video Background */}
         <HeroVideoBg />
 
         {/* Hero Content */}
-        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-accent mb-6 tracking-tight drop-shadow-lg"
-          >
-            The Chocolate Cake Factory
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-3xl text-textLight font-light mb-10 drop-shadow-md"
-          >
-            The Best in the City
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link
-              href="/cakes"
-              className="bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white transition duration-300 w-full sm:w-auto text-center"
+        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="min-h-[100svh] flex flex-col items-center justify-center text-center pt-24 pb-24 sm:pt-28 sm:pb-28">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="font-serif font-bold text-accent tracking-tight drop-shadow-lg
+                         text-4xl sm:text-5xl md:text-7xl"
             >
-              View Cakes
-            </Link>
+              The Chocolate <br className="sm:hidden" />
+              Cake Factory
+            </motion.h1>
 
-            <a
-              href="https://wa.me/919941186416"
-              target="_blank"
-              rel="noreferrer"
-              className="bg-transparent border-2 border-accent text-accent px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent hover:text-primary transition duration-300 w-full sm:w-auto text-center"
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-3 text-textLight font-light drop-shadow-md
+                         text-base sm:text-lg md:text-3xl"
             >
-              Order on WhatsApp
-            </a>
-          </motion.div>
+              The Best in the City
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-8 w-full max-w-md flex flex-col gap-4"
+            >
+              <Link
+                href="/cakes"
+                className="bg-accent text-primary py-3 sm:py-4 rounded-full font-semibold
+                           text-base sm:text-lg hover:bg-white transition duration-300 text-center"
+              >
+                View Cakes
+              </Link>
+
+              <a
+                href={buildHeroWhatsAppLink()}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-transparent border-2 border-accent text-accent py-3 sm:py-4 rounded-full font-semibold
+                           text-base sm:text-lg hover:bg-accent hover:text-primary transition duration-300 text-center"
+              >
+                Order on WhatsApp
+              </a>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom brand line */}
+        <div className="absolute bottom-0 left-0 right-0 text-center pt-3 pb-[max(14px,env(safe-area-inset-bottom))] z-10">
+          <p className="text-white/40 text-xs sm:text-sm">
+            The Chocolate Cake Factory • THE BEST IN THE CITY
+          </p>
         </div>
       </section>
 
@@ -515,6 +1323,7 @@ export default function Home() {
                   <p className="text-sm text-primary/60 mb-2 uppercase tracking-wider font-semibold">
                     {product.category}
                   </p>
+
                   <h3 className="font-serif text-2xl text-primary mb-2 line-clamp-1">
                     {product.name}
                   </h3>
@@ -523,10 +1332,9 @@ export default function Home() {
                     <span className="text-xl font-bold text-primary">
                       ₹{product.price}
                     </span>
+
                     <a
-                      href={`https://wa.me/919941186416?text=${encodeURIComponent(
-                        "Hi, I want to order " + product.name
-                      )}`}
+                      href={buildProductWhatsAppLink(product.name, product.price)}
                       target="_blank"
                       rel="noreferrer"
                       className="text-accent underline font-semibold hover:text-primary transition-colors"
@@ -601,63 +1409,6 @@ export default function Home() {
               alt="Cake detail 2"
             />
           </motion.div>
-        </div>
-      </section>
-
-      {/* Branch Highlights */}
-      <section className="py-20 bg-background px-4">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl font-serif text-primary mb-12">
-            Visit Our Locations
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
-              <h3 className="text-2xl font-serif text-primary mb-2">
-                Ambattur Branch
-              </h3>
-              <p className="text-gray-600 mb-6 font-medium">Banu Nagar, Chennai</p>
-              <div className="space-y-3">
-                <a
-                  href="tel:09941186416"
-                  className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
-                >
-                  Call Us: 09941186416
-                </a>
-                <Link
-                  href="/locations"
-                  className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
-                >
-                  Get Directions
-                </Link>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-secondary/30 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-yellow-600" />
-              <h3 className="text-2xl font-serif text-primary mb-2">
-                Kallikuppam Branch
-              </h3>
-              <p className="text-gray-600 mb-6 font-medium">
-                Redhills Main Rd, Chennai
-              </p>
-              <div className="space-y-3">
-                <a
-                  href="tel:09941186416"
-                  className="block w-full py-3 bg-primary/5 text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition"
-                >
-                  Call Us: 09941186416
-                </a>
-                <Link
-                  href="/locations"
-                  className="block w-full py-3 bg-accent text-primary rounded-xl font-semibold hover:bg-yellow-500 transition"
-                >
-                  Get Directions
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
