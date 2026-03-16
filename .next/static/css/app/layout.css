@@ -823,6 +823,9 @@ video {
 .h-full {
   height: 100%;
 }
+.max-h-\[70vh\] {
+  max-height: 70vh;
+}
 .max-h-\[80vh\] {
   max-height: 80vh;
 }

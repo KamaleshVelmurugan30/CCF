@@ -12,7 +12,7 @@ function makeRange(count: number) {
 
 export const cakeGallery: CakeItem[] = [
   // Birthday: /public/cakes/birthday/1.png ... 12.png
-  ...makeRange(12).map((n) => ({
+  ...makeRange(13).map((n) => ({
     id: `birthday-${n}`,
     name: `Birthday Cake Design ${n}`,
     category: "Birthday",
